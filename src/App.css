@@ -66,17 +66,48 @@ input {
     position: relative;
 }
 
-.movie__poster {
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
-    margin-bottom: 0.5em;
+.container {
+    position: relative;
 }
 
-.movie__poster:hover {
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.container:hover .overlay {
+    opacity: 1;
     cursor: pointer;
-    filter: brightness(50%);
-    -webkit-filter: brightness(50%);
-    -moz-filter: brightness(50%);
-    -o-filter: brightness(50%);
+}
+
+.text {
+    color: white;
+    font-size: small;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    width: 95%;
+    height: 90%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .movie__title {

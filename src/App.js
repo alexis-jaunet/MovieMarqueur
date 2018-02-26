@@ -9,7 +9,12 @@ var Header = require('./header/Header');
 const Movie = props => (
     <div className="movie">
         <figure className="movie__figure">
-            <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${props.poster_path}`} className="movie__poster" />
+            <div className="container">
+                <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${props.poster_path}`} className="image" />
+                <div className="overlay">
+                    <div className="text">{props.overview}</div>
+                </div>
+            </div>
             <h2 className="movie__title">{props.title}</h2>
         </figure>
     </div>
@@ -19,6 +24,7 @@ Movie.propTypes = {
     id         : PropTypes.number.isRequired,
     title      : PropTypes.string.isRequired,
     poster_path: PropTypes.string,
+    overview   : PropTypes.string,
 };
 
 const Movies = props => (
@@ -72,7 +78,7 @@ class App extends React.Component {
     }
 
     getPopularMovies() {
-        const url = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716`;
+        const url = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=fr-FR`;
 
         fetch (url)
             .then(response => response.json())
@@ -84,7 +90,7 @@ class App extends React.Component {
     }
 
     searchMovie(query) {
-        const url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=cfe422613b250f702980a3bbf9e90716`;
+        const url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=cfe422613b250f702980a3bbf9e90716&language=fr-FR`;
 
         fetch (url)
             .then(response => response.json())
@@ -107,7 +113,7 @@ class App extends React.Component {
             <div>
                 <Header />
                 <div className="app">
-                    <Search query={query} onInput={this.onInput} placeholder="Search for Movie…" />
+                    <Search query={query} onInput={this.onInput} placeholder="Rechercher un film..." />
                     <Movies movies={movies.filter(isSearched(query))} />
                 </div>
             </div>
