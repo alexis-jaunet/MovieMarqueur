@@ -1,33 +1,86 @@
+* {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
 body {
-  background-color: #3A4F5B;
-  text-align: center;
+    background-color: #3a4f5b;
+    color: #F6F6F6;
+    font-family: sans-serif;
+    line-height: 1.5;
+    margin: 0 auto;
+    min-height: 100vh;
+    width: 100%;
 }
 
-.App {
-  text-align: center;
+figure {
+    margin: 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+input {
+    border: 0;
+    font: inherit;
+    margin: 0;
+    padding: 0;
 }
 
-.App-title {
-  font-size: 1.5em;
+.app {
+    width: 90%;
+    margin: 0 auto;
 }
 
-.App-intro {
-  font-size: large;
+.search {
+    font-size: 1.5rem;
+    margin: 1.5em auto 3em;
+    max-width: 80%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.search [type='search'] {
+    background-color: #F6F6F6;
+    color: #3A4F5B;
+    padding: 0.5em 2em;
+    text-align: center;
+    width: 100%;
+}
+
+.movies {
+    display: grid;
+    grid-gap: 3em 2em;
+    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.movie__figure {
+    position: relative;
+}
+
+.movie__poster {
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    margin-bottom: 0.5em;
+}
+
+.movie__poster:hover {
+    cursor: pointer;
+    filter: brightness(50%);
+    -webkit-filter: brightness(50%);
+    -moz-filter: brightness(50%);
+    -o-filter: brightness(50%);
+}
+
+.movie__title {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0;
 }
