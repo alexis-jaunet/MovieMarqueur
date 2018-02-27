@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Homepage.css';
-import '../header/Header.css';
+import './header/Header.css';
 import Description from './Description';
 
-var Header = require('../header/Header');
+var Header = require('./header/Header');
 
 
 const Movie = props => (
