@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Header from './header/Header';
 import './Homepage.css';
-import './header/Header.css';
+import '../header/Header.css';
+import Description from './Description';
+
+var Header = require('../header/Header');
+
 
 const Movie = props => (
     <div className="movie">
@@ -52,13 +55,16 @@ Search.propTypes = {
     placeholder: PropTypes.string
 };
 
+
+// CLASSE PRINCIPALE
 class Homepage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             movies: [],
-            query: ''
+            query: '',
+            goToConnexion: false
         };
 
         this.onInput = this.onInput.bind(this);
@@ -104,10 +110,19 @@ class Homepage extends React.Component {
         this.getPopularMovies();
     }
 
+    redirectToConnexion () {
+        this.setState({
+            goToConnexion: true
+        })
+    }
+
     render() {
         const { movies, query } = this.state;
         const isSearched = query => item => !query || item.title.toLowerCase().includes(query.toLowerCase());
 
+        if (this.state.goToConnexion) {
+            return <Description />
+        }
         return (
             <div>
                 <Header />
