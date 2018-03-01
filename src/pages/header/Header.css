@@ -1,6 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300);
 .header {
     width: 100%;
-    background-color: #F6F6F6;
+    background: #809eae;
     position: relative;
     margin-bottom: 30px;
     text-align: left;
@@ -12,18 +13,21 @@
     margin-left: 10px;
 }
 
+.img-logo:hover {
+    cursor: pointer;
+}
+
+.separator {
+    height: 0.5px;
+    width: 100%;
+    background-color: #999999;
+}
+
 /*
    Effet mirror
  */
 .btn-inscription-connexion {
-    flex: 1 1 auto;
     margin: 10px;
-    padding: 20px;
-    border: 2px solid #3A4F5B;
-    border-radius: 30px;
-    text-align: center;
-    color: #3A4F5B;
-    background-color: #F6F6F6;
     float: right;
     position: absolute;
     top: 30px;
@@ -32,24 +36,71 @@
     transition: .3s;
 }
 
-.btn-inscription-connexion:after {
-     position: absolute;
-     transition: .3s;
-     content: '';
-     width: 0;
-     left: 50%;
-     bottom: 0;
-     height: 3px;
-     background: #f7f7f7;
- }
+button {
+    border: 1px solid #3a4f5b;
+    background-color: #166c99;
+    text-align: center;
+    color: white;
+    height: 60px;
+    font-size: 18px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-transition: .6s;
+    transition: .6s;
+    overflow: hidden;
+}
+button:focus {
+    outline: 0;
+}
+button:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    width: 60px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .5;
+    -webkit-filter: blur(30px);
+    filter: blur(30px);
+    -webkit-transform: translateX(-100px) skewX(-15deg);
+    transform: translateX(-100px) skewX(-15deg);
+}
+button:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 100%;
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    -webkit-transform: translateX(-100px) skewX(-15deg);
+    transform: translateX(-100px) skewX(-15deg);
+}
+button:hover {
+    background: #3a4f5b;
+    cursor: pointer;
+}
+button:hover:before {
+    -webkit-transform: translateX(300px) skewX(-15deg);
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 0.6;
+    -webkit-transition: .7s;
+    transition: .7s;
+}
+button:hover:after {
+    -webkit-transform: translateX(300px) skewX(-15deg);
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    -webkit-transition: .7s;
+    transition: .7s;
+}
 
 .btn-inscription-connexion:hover {
-    cursor: pointer;
-    color: #F6F6F6;
-    background-color: #3A4F5B;
-}
-
-.btn-inscription-connexion:hover:after {
-         width: 100%;
-         left: 0;
-}
+     cursor: pointer;
+ }

@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300);
+
 * {
     box-sizing: inherit;
 }
@@ -10,7 +12,6 @@ html {
 body {
     background-color: #3a4f5b;
     color: #F6F6F6;
-    font-family: sans-serif;
     line-height: 1.5;
     margin: 0 auto;
     min-height: 100vh;
@@ -29,9 +30,10 @@ img {
 
 input {
     border: 0;
-    font: inherit;
     margin: 0;
     padding: 0;
+    font: inherit;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .app {
@@ -46,8 +48,8 @@ input {
 }
 
 .search [type='search'] {
-    background-color: #F6F6F6;
-    color: #3A4F5B;
+    background-color: #131b20;
+    color: #F6F6F6;
     padding: 0.5em 2em;
     text-align: center;
     width: 100%;
@@ -60,6 +62,7 @@ input {
     list-style: none;
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .movie__figure {
@@ -96,22 +99,26 @@ input {
 
 .text {
     color: white;
-    font-size: small;
+    font-size: 0.75em;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
-    width: 95%;
+    width: 90%;
     height: 90%;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.movie__title {
+.date {
+    margin-top: 135%;
+    margin-left: 10px;
+    text-align: left;
+}
+
+h2 {
     font-size: 0.875rem;
     font-weight: 400;
     margin: 0;
+    text-transform: uppercase;
 }
