@@ -1,6 +1,6 @@
-var React = require('react');
-var PropTypes = require('prop-types');
-var ReactDOM = require('react-dom');
+import React from 'react'
+import PropTypes from 'prop-types'
+import ReactDOM from 'react-dom'
 
 const Movie = props => (
     <div className="movie">
@@ -8,47 +8,60 @@ const Movie = props => (
             <div className="container">
                 <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${props.poster_path}`} className="image" />
                 <div className="overlay">
-                    <div className="text">{ strip_overflow(props.overview) }</div>
-                    <div className="date">{ display_date(props.release_date) }</div>
+                    <div className="text">{strip_overflow(props.overview)}</div>
+                    <div className="date">{display_date(props.release_date)}</div>
                 </div>
             </div>
-            <h2 className="movie__title">{ props.title }</h2>
+            <h2 className="movie__title">{props.title}</h2>
         </figure>
     </div>
-);
+)
 
-const strip_overflow = (val) => {
-    const regex = /^(?:\S+\W+){0,50}(?:[A-zÀ-ÿ]+)/g;
-    if (val == null || val == "") {
-        return "";
+const strip_overflow = val => {
+    const regex = /^(?:\S+\W+){0,50}(?:[A-zÀ-ÿ]+)/g
+    if (val == null || val === '') {
+        return ''
     }
-    return val.match(regex) + "...";
+    return `${val.match(regex)}...`
 }
 
-const display_date = (val) => {
-    var mois = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+const display_date = val => {
+    const mois = [
+        'Janvier',
+        'Février',
+        'Mars',
+        'Avril',
+        'Mai',
+        'Juin',
+        'Juillet',
+        'Août',
+        'Septembre',
+        'Octobre',
+        'Novembre',
+        'Décembre'
+    ]
 
-    var indice = parseInt(val.substr(5,2))-1;
+    const indice = parseInt(val.substr(5, 2)) - 1
 
-    var year  = val.substr(0,4);
-    var month = mois[indice];
-    var day   = val.substr(8,2);
+    const year = val.substr(0, 4)
+    const month = mois[indice]
+    const day = val.substr(8, 2)
 
-    var releaseDate = new Date (val);
+    const releaseDate = new Date(val)
 
     if (releaseDate < new Date()) {
-        return (day + " " + month + " " + year);
+        return `${day} ${month} ${year}`
     }
-    return ("Sort le " + day + " " + month + " " + year);
+    return `Sort le ${day} ${month} ${year}`
 }
 
 Movie.propTypes = {
-    id           : PropTypes.number.isRequired,
-    title        : PropTypes.string.isRequired,
-    poster_path  : PropTypes.string,
-    overview     : PropTypes.string,
-    release_date : PropTypes.string,
-};
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
+    overview: PropTypes.string,
+    release_date: PropTypes.string
+}
 
 const Movies = props => (
     <ul className="movies">
@@ -58,81 +71,80 @@ const Movies = props => (
             </li>
         ))}
     </ul>
-);
+)
 
 Movies.propTypes = {
     movies: PropTypes.arrayOf(PropTypes.object)
-};
+}
 
 const Search = props => (
     <form className="search" onInput={event => props.onInput(event.target.value)}>
         <input type="search" value={props.query} placeholder={props.placeholder} />
     </form>
-);
+)
 
 Search.propTypes = {
-    query      : PropTypes.string.isRequired,
-    onInput    : PropTypes.func.isRequired,
+    query: PropTypes.string.isRequired,
+    onInput: PropTypes.func.isRequired,
     placeholder: PropTypes.string
-};
-
+}
 
 // CLASSE PRINCIPALE
 class Homepage extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             movies: [],
-            query: '',
-        };
+            query: ''
+        }
 
-        this.onInput = this.onInput.bind(this);
+        this.onInput = this.onInput.bind(this)
     }
 
     onInput(query) {
         this.setState({
             query
-        });
+        })
 
-        if (query == '') {
-            this.getPopularMovies();
+        if (query === '') {
+            this.getPopularMovies()
         } else {
-            this.searchMovie(query);
+            this.searchMovie(query)
         }
     }
 
     getPopularMovies() {
-        const url = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=fr-FR`;
+        const url = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=fr-FR`
 
-        fetch (url)
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 this.setState({
                     movies: data.results
                 })
-            });
+            })
     }
 
     searchMovie(query) {
-        const url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=cfe422613b250f702980a3bbf9e90716&language=fr-FR`;
+        const url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=cfe422613b250f702980a3bbf9e90716&language=fr-FR`
 
-        fetch (url)
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 this.setState({
                     movies: data.results
                 })
-            });
+            })
     }
 
     componentDidMount() {
-        this.getPopularMovies();
+        this.getPopularMovies()
     }
 
     render() {
-        const { movies, query } = this.state;
-        const isSearched = query => item => !query || item.title.toLowerCase().includes(query.toLowerCase());
+        const { movies, query } = this.state
+        const isSearched = query => item => !query || item.title.toLowerCase().includes(query.toLowerCase())
 
         return (
             <div>
@@ -141,9 +153,9 @@ class Homepage extends React.Component {
                     <Movies movies={movies.filter(isSearched(query))} />
                 </div>
             </div>
-        );
+        )
     }
 }
 
-ReactDOM.render(<Homepage/>, document.getElementById('root'));
-module.exports = Homepage;
+ReactDOM.render(<Homepage />, document.getElementById('root'))
+export default Homepage

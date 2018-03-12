@@ -1,80 +1,77 @@
-import './pages/header/Header.css';
-import './pages/Homepage.css';
-import './pages/Connexion.css';
-import './pages/Inscription.css';
-
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-var Header      = require('./pages/header/Header');
-var Homepage    = require('./pages/Homepage');
-var Connexion   = require('./pages/Connexion');
-var Inscription = require('./pages/Inscription');
-var Description = require('./pages/Description');
-
+import './pages/header/Header.css'
+import './pages/Homepage.css'
+import './pages/Connexion.css'
+import './pages/Inscription.css'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Header from './pages/header/Header'
+import Homepage from './pages/Homepage'
+import Connexion from './pages/Connexion'
+import Inscription from './pages/Inscription'
+import Description from './pages/Description'
 
 // CLASSE PRINCIPALE
 class App extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             movies: [],
             query: '',
-            page: "homepage"
-        };
+            page: 'homepage'
+        }
 
-        this.renderHomepage = this.renderHomepage.bind(this);
-        this.renderConnexion = this.renderConnexion.bind(this);
-        this.renderInscription = this.renderInscription.bind(this);
-        this.renderDescription = this.renderDescription.bind(this);
+        this.renderHomepage = this.renderHomepage.bind(this)
+        this.renderConnexion = this.renderConnexion.bind(this)
+        this.renderInscription = this.renderInscription.bind(this)
+        this.renderDescription = this.renderDescription.bind(this)
     }
 
-    renderHomepage () {
-        this.setState ({
-            page: "homepage"
+    renderHomepage() {
+        this.setState({
+            page: 'homepage'
         })
     }
 
-    renderConnexion () {
-        this.setState ({
-            page: "connexion"
+    renderConnexion() {
+        this.setState({
+            page: 'connexion'
         })
     }
 
-    renderInscription () {
-        this.setState ({
-            page: "inscription"
+    renderInscription() {
+        this.setState({
+            page: 'inscription'
         })
     }
 
-    renderDescription () {
-        this.setState ({
-            page: "description"
+    renderDescription() {
+        this.setState({
+            page: 'description'
         })
     }
 
     render() {
-        if (this.state.page == "connexion") {
+        if (this.state.page === 'connexion') {
             return (
                 <div>
-                    <Header renderConnexion = { this.renderConnexion } renderHomepage = { this.renderHomepage }/>
-                    <Connexion renderInscription = { this.renderInscription }/>
+                    <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
+                    <Connexion renderInscription={this.renderInscription} />
                 </div>
-            );
+            )
         }
-        if (this.state.page == "inscription") {
+        if (this.state.page === 'inscription') {
             return (
                 <div>
-                    <Header renderConnexion = { this.renderConnexion } renderHomepage = { this.renderHomepage }/>
-                    <Inscription renderConnexion = { this.renderConnexion }/>
+                    <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
+                    <Inscription renderConnexion={this.renderConnexion} />
                 </div>
-            );
+            )
         }
-        if (this.state.page == "description") {
+        if (this.state.page === 'description') {
             return (
                 <div>
-                    <Header renderConnexion = { this.renderConnexion } renderHomepage = { this.renderHomepage }/>
+                    <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
                     <Description />
                 </div>
             )
@@ -82,12 +79,11 @@ class App extends React.Component {
 
         return (
             <div>
-                <Header renderConnexion ={ this.renderConnexion } renderHomepage = { this.renderHomepage }/>
-                <Homepage renderDescription={ this.renderDescription }/>
-
+                <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
+                <Homepage renderDescription={this.renderDescription} />
             </div>
-        );
+        )
     }
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'))
