@@ -1,6 +1,6 @@
 import React from 'react'
-
 import ReactDOM from 'react-dom'
+import Login from './components/Login'
 
 class Connexion extends React.Component {
     constructor(props) {
@@ -41,25 +41,7 @@ class Connexion extends React.Component {
                     <label className="tab change" onClick={this.goToInscription}>
                         Inscription
                     </label>
-                    <div className="login-form">
-                        <div className="sign-in-htm">
-                            <div className="group">
-                                <label htmlFor="user" className="label">
-                                    Pseudo
-                                </label>
-                                <input id="user" type="text" className="input" onInput={this.handlePseudo} />
-                            </div>
-                            <div className="group">
-                                <label htmlFor="pass" className="label">
-                                    Mot de passe
-                                </label>
-                                <input id="pass" type="password" className="input" data-type="password" onInput={this.handleMdp} />
-                            </div>
-                            <div className="group">
-                                <input type="submit" className="button" value="Go !" onClick={this.handleSubmit} />
-                            </div>
-                        </div>
-                    </div>
+                    <Login />
                 </div>
             </div>
         )

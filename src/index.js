@@ -1,7 +1,7 @@
 import './pages/header/Header.css'
 import './pages/Homepage.css'
-import './pages/Connexion.css'
-import './pages/Inscription.css'
+import './pages/Connexion-Inscription.css'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Header from './pages/header/Header'
@@ -16,9 +16,11 @@ class App extends React.Component {
         super(props)
 
         this.state = {
+            token: '',
             movies: [],
             query: '',
-            page: 'homepage'
+            page: 'homepage',
+            id: ''
         }
 
         this.renderHomepage = this.renderHomepage.bind(this)
@@ -27,9 +29,10 @@ class App extends React.Component {
         this.renderDescription = this.renderDescription.bind(this)
     }
 
-    renderHomepage() {
+    renderHomepage(token) {
         this.setState({
-            page: 'homepage'
+            page: 'homepage',
+            token: token
         })
     }
 
@@ -45,14 +48,16 @@ class App extends React.Component {
         })
     }
 
-    renderDescription() {
+    renderDescription(token, id) {
         this.setState({
-            page: 'description'
+            page: 'description',
+            id: id,
+            token: token
         })
     }
 
     render() {
-        if (this.state.page === 'connexion') {
+        if (this.state.page == 'connexion') {
             return (
                 <div>
                     <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
@@ -60,7 +65,7 @@ class App extends React.Component {
                 </div>
             )
         }
-        if (this.state.page === 'inscription') {
+        if (this.state.page == 'inscription') {
             return (
                 <div>
                     <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
@@ -68,7 +73,7 @@ class App extends React.Component {
                 </div>
             )
         }
-        if (this.state.page === 'description') {
+        if (this.state.page == 'description') {
             return (
                 <div>
                     <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />

@@ -29,6 +29,7 @@
 .btn-inscription-connexion {
     margin: 10px;
     float: right;
+    display: block;
     position: absolute;
     top: 30px;
     right:0;
@@ -52,10 +53,9 @@ button {
 button:focus {
     outline: 0;
 }
-button:before {
+
+.btn-inscription-connexion:before {
     content: '';
-    display: block;
-    position: absolute;
     background: rgba(255, 255, 255, 0.5);
     width: 60px;
     height: 100%;
@@ -67,7 +67,8 @@ button:before {
     -webkit-transform: translateX(-100px) skewX(-15deg);
     transform: translateX(-100px) skewX(-15deg);
 }
-button:after {
+
+.btn-inscription-connexion:after {
     content: '';
     display: block;
     position: absolute;
@@ -82,18 +83,21 @@ button:after {
     -webkit-transform: translateX(-100px) skewX(-15deg);
     transform: translateX(-100px) skewX(-15deg);
 }
-button:hover {
+
+.btn-inscription-connexion:hover {
     background: #3a4f5b;
     cursor: pointer;
 }
-button:hover:before {
+
+.btn-inscription-connexion:hover:before {
     -webkit-transform: translateX(300px) skewX(-15deg);
     transform: translateX(300px) skewX(-15deg);
     opacity: 0.6;
     -webkit-transition: .7s;
     transition: .7s;
 }
-button:hover:after {
+
+.btn-inscription-connexion:hover:after {
     -webkit-transform: translateX(300px) skewX(-15deg);
     transform: translateX(300px) skewX(-15deg);
     opacity: 1;

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Register from './components/Register'
 
 class Inscription extends React.Component {
     constructor(props) {
@@ -131,48 +132,7 @@ class Inscription extends React.Component {
                         <label htmlFor="tab-2" className="tab">
                             Inscription
                         </label>
-                        <form className="login-form">
-                            <div className="sign-up-htm">
-                                <div className="group">
-                                    <label htmlFor="user" className="label">
-                                        Pseudo *
-                                    </label>
-                                    <input id="user" type="text" className="input" required />
-                                </div>
-                                <div className="group">
-                                    <label htmlFor="pass" className="label">
-                                        Mot de passe *
-                                    </label>
-                                    <input id="pass" type="password" className="input" data-type="password" required />
-                                </div>
-                                <div className="group">
-                                    <label htmlFor="pass" className="label">
-                                        E-mail
-                                    </label>
-                                    <input id="pass" type="text" className="input" />
-                                </div>
-                                <div className="group">
-                                    <label htmlFor="pass" className="label">
-                                        Ville *
-                                    </label>
-                                    <input id="pass" type="text" className="input" required />
-                                </div>
-                                <div className="group">
-                                    <label htmlFor="pass" className="label">
-                                        Adresse
-                                    </label>
-                                    <input id="pass" type="text" className="input" />
-                                </div>
-                                <div className="group">
-                                    <label className="error">{this.state.errors.pseudo}</label>
-                                    <label className="error">{this.state.errors.mdp}</label>
-                                    <label className="error">{this.state.errors.ville}</label>
-                                </div>
-                                <div className="group">
-                                    <input type="submit" className="button" value="Go !" onSubmit={this.handleSubmit} />
-                                </div>
-                            </div>
-                        </form>
+                        <Register/>
                     </div>
                 </div>
             </div>

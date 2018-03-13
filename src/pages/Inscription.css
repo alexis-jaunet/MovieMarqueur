@@ -7,16 +7,8 @@
 
 a{color:inherit;text-decoration:none}
 
-.change:hover {
-    cursor: pointer;
-}
-
 .button:hover {
     cursor: pointer;
-}
-
-.error {
-    color:red;
 }
 
 .login-wrap{
