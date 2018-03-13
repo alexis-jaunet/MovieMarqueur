@@ -5,9 +5,12 @@ import MyInput from './MyInput'
 export default class Login extends React.Component {
     constructor(props) {
         super(props)
+        this.state = { canSubmit: false }
+
         this.disableButton = this.disableButton.bind(this)
         this.enableButton = this.enableButton.bind(this)
-        this.state = { tokken: props.tokken, canSubmit: false }
+        this.submit = this.submit.bind(this)
+        this.goToHomepage = this.goToHomepage.bind(this)
     }
 
     disableButton() {
@@ -18,8 +21,12 @@ export default class Login extends React.Component {
         this.setState({ canSubmit: true })
     }
 
+    goToHomepage (token) {
+        this.props.goToHomepage(token)
+    }
+
     submit(model) {
-        fetch('http://dylanviaud.me/login', {
+        var fetchAsyncA = async () => fetch('http://dylanviaud.me/login', {
             method: 'post',
             mode: 'cors',
             headers: {
@@ -29,26 +36,26 @@ export default class Login extends React.Component {
             body: JSON.stringify(model)
         })
             .then(
-                function(response) {
-                    // if (response.status === "error") {
-                    //     console.log('Looks like there was a problem. Status Code: ' +
-                    //         response.status);
-                    //     return;
-                    // }
-
-                    // Examine the text in the response
-                    response.json().then(function(data) {
-                        console.log(data);
-                    });
+                function (response) {
+                    if (!response.ok) {
+                        alert("Utilisateur non existant")
+                        throw Error("User unknown")
+                    }
+                    return response
                 }
             )
-            .catch(function(err) {
-                console.log('Fetch Error :-S', err);
-            });
+            .then(response => response.json())
+            .then((responseData) => {
+                return responseData;
+            })
+            .catch(error => console.warn(error));
+        let token = fetchAsyncA()
+        token.then(value => {
+            if (value) {
+                this.goToHomepage(value.token)
+            }
+        })
 
-        // if (this.state.token != '') {
-        //     this.props.renderHomepage(this.state.token)
-        // }
     }
 
     render() {

@@ -1,6 +1,7 @@
 import './pages/header/Header.css'
 import './pages/Homepage.css'
 import './pages/Connexion-Inscription.css'
+import './pages/Description.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -60,32 +61,32 @@ class App extends React.Component {
         if (this.state.page == 'connexion') {
             return (
                 <div>
-                    <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
-                    <Connexion renderInscription={this.renderInscription} />
+                    <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} token={this.state.token} />
+                    <Connexion renderInscription={this.renderInscription} renderHomepage={this.renderHomepage} />
                 </div>
             )
         }
         if (this.state.page == 'inscription') {
             return (
                 <div>
-                    <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
-                    <Inscription renderConnexion={this.renderConnexion} />
+                    <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} token={this.state.token} />
+                    <Inscription renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
                 </div>
             )
         }
         if (this.state.page == 'description') {
             return (
                 <div>
-                    <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
-                    <Description />
+                    <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} token={this.state.token} />
+                    <Description token={this.state.token} id={this.state.id}/>
                 </div>
             )
         }
 
         return (
             <div>
-                <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} />
-                <Homepage renderDescription={this.renderDescription} />
+                <Header renderConnexion={this.renderConnexion} renderHomepage={this.renderHomepage} token={this.state.token} />
+                <Homepage renderDescription={this.renderDescription} token={this.state.token} />
             </div>
         )
     }

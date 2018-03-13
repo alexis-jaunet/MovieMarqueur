@@ -5,9 +5,13 @@ import MyInput from './MyInput'
 export default class Register extends React.Component {
     constructor(props) {
         super(props)
+        this.state = { canSubmit: false }
+
         this.disableButton = this.disableButton.bind(this)
         this.enableButton = this.enableButton.bind(this)
-        this.state = { token: '', canSubmit: false }
+        this.submit = this.submit.bind(this)
+        this.goToHomepage = this.goToHomepage.bind(this)
+
     }
 
     disableButton() {
@@ -18,8 +22,12 @@ export default class Register extends React.Component {
         this.setState({ canSubmit: true })
     }
 
+    goToHomepage (token) {
+        this.props.goToHomepage(token)
+    }
+
     submit(model) {
-        fetch('http://dylanviaud.me/register', {
+        var fetchAsyncA = async () => fetch('http://dylanviaud.me/register', {
             method: 'post',
             mode: 'cors',
             headers: {
@@ -28,15 +36,25 @@ export default class Register extends React.Component {
             },
             body: JSON.stringify(model)
         })
-            .then(res => res.json())
-            .then(res => console.log(res.token))
-            .then(res => this.setState({
-                token: res.token
-            }))
-
-        // if (this.state.token != '') {
-        //     this.props.renderHomepage(this.state.token)
-        // }
+            .then(
+                function (response) {
+                    if (!response.ok) {
+                        throw Error("User unknown")
+                    }
+                    return response
+                }
+            )
+            .then(response => response.json())
+            .then((responseData) => {
+                return responseData;
+            })
+            .catch(error => console.warn(error));
+        let token = fetchAsyncA()
+        token.then(value => {
+            if (value) {
+                this.goToHomepage(value.token)
+            }
+        })
     }
 
     render() {
@@ -45,6 +63,7 @@ export default class Register extends React.Component {
                 <div className="sign-up-htm">
                     <MyInput
                         title="Pseudo *"
+                        value="qsdf"
                         name="pseudo"
                         validations="isAlphanumeric,minLength:3,maxLength:20"
                         validationErrors={{
@@ -57,6 +76,7 @@ export default class Register extends React.Component {
                     />
                     <MyInput
                         title="Email *"
+                        value="q@s.fr"
                         name="email"
                         validations="isEmail,maxLength:50"
                         validationErrors={{
@@ -69,6 +89,7 @@ export default class Register extends React.Component {
                     <MyInput
                         name="mdp"
                         title="Mots de passe *"
+                        value="Qsdfg74*"
                         type="password"
                         validations={{
                             matchRegexp: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]).{8,}$/
@@ -83,6 +104,7 @@ export default class Register extends React.Component {
                     <MyInput
                         name="cp"
                         title="Code postal *"
+                        value="22000"
                         type="text"
                         validations="isNumeric,minLength:5,maxLength:5"
                         validationErrors={{

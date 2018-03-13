@@ -5,28 +5,17 @@ import Login from './components/Login'
 class Connexion extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { pseudo: '', mdp: '', page: props.page }
 
-        this.handlePseudo = this.handlePseudo.bind(this)
-        this.handleMdp = this.handleMdp.bind(this)
         this.goToInscription = this.goToInscription.bind(this)
-    }
-
-    handlePseudo(event) {
-        this.setState({ value: event.target.pseudo })
-    }
-
-    handleMdp(event) {
-        this.setState({ value: event.target.mdp })
-    }
-
-    handleSubmit(event) {
-        alert(`A name was submitted: ${this.state.value}`)
-        event.preventDefault()
+        this.goToHomepage = this.goToHomepage.bind(this)
     }
 
     goToInscription() {
         this.props.renderInscription()
+    }
+
+    goToHomepage (token) {
+        this.props.renderHomepage(token)
     }
 
     render() {
@@ -41,7 +30,7 @@ class Connexion extends React.Component {
                     <label className="tab change" onClick={this.goToInscription}>
                         Inscription
                     </label>
-                    <Login />
+                    <Login goToHomepage={this.goToHomepage}/>
                 </div>
             </div>
         )

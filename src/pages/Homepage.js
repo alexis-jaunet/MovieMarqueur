@@ -66,7 +66,7 @@ Movie.propTypes = {
 const Movies = props => (
     <ul className="movies">
         {props.movies.map(movie => (
-            <li key={movie.id} onClick={() => { props.renderDescription(movie.id) }}>
+            <li key={movie.id} onClick={() => { props.renderDescription(props.token, movie.id) }}>
                 <Movie {...movie} />
             </li>
         ))}
@@ -75,7 +75,8 @@ const Movies = props => (
 
 Movies.propTypes = {
     movies: PropTypes.arrayOf(PropTypes.object),
-    renderDescription: PropTypes.func
+    renderDescription: PropTypes.func,
+    token: PropTypes.string
 }
 
 const Search = props => (
@@ -156,7 +157,7 @@ class Homepage extends React.Component {
             <div>
                 <div className="app" id="homepage">
                     <Search query={query} onInput={this.onInput} placeholder="Rechercher un film..." />
-                    <Movies movies={movies.filter(isSearched(query))} renderDescription={this.props.renderDescription}/>
+                    <Movies movies={movies.filter(isSearched(query))} renderDescription={this.props.renderDescription} token={this.props.token}/>
                 </div>
             </div>
         )
