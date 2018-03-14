@@ -55,6 +55,10 @@ input {
     width: 100%;
 }
 
+.movie__title{
+    color: #F6F6F6;
+}
+
 .movies {
     display: grid;
     grid-gap: 3em 2em;

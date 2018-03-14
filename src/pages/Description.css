@@ -26,6 +26,7 @@ body {
     overflow: auto;
 }
 
+
 input {
     background: none;
     border: none;
@@ -143,4 +144,39 @@ p {
 #related li {
     list-style: none;
     cursor: pointer;
+}
+
+#centered-container {
+    width: inherit;
+    height: 400px;
+    text-align: center;
+}
+
+#centered-message {
+    color: #fff;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+#centered-message > h1 {
+    margin-top: 0;
+}
+
+.star-ratings-sprite {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    font-size: 0;
+    height: 21px;
+    line-height: 0;
+    overflow: hidden;
+    max-width: 30%;
+    text-indent: -999em;
+    width: 218px;
+}
+.star-ratings-sprite-rating {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    background-position: 0 100%;
+    float: left;
+    height: 21px;
+    display: block;
 }

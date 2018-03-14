@@ -1,0 +1,28 @@
+- Installer les dépendances : 
+npm install
+
+- Démarrer en mode développmenet : 
+npm start
+
+- Dépendance à télécharger une seule fois pour lancer la version de production :
+npm install -g server
+
+- Générer le build de la version de production : 
+npm run-script build
+
+- Démarrer la version de production :
+serve -s build
+
+Résultat du démarrage de la version de production :
+   ┌──────────────────────────────────────────────────┐
+   │                                                  │
+   │   Serving!                                       │
+   │                                                  │
+   │   - Local:            http://localhost:5000      │
+   │   - On Your Network:  http://172.28.8.188:5000   │
+   │                                                  │
+   │   Copied local address to clipboard!             │
+   │                                                  │
+   └──────────────────────────────────────────────────┘
+
+
