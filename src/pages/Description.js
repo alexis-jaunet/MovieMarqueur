@@ -99,7 +99,7 @@ class Description extends React.Component {
                                             <div className='ratings'>
                                                 <h2>Note utilisateur</h2>
                                                 <div className="star-ratings-sprite">
-                                                    <span style={{width: userRating+'50%'}}
+                                                    <span style={{width: userRating+'%'}}
                                                           className="star-ratings-sprite-rating"></span>
                                                 </div>
                                             </div>
